@@ -3,13 +3,14 @@
  * Recall that a Queue is a first-in, first-out (FIFO) data structure;
  * the first item inserted is the first item to be removed.
  */
+const INITIAL_CAPACITY = 5;
 
 class ArrayQueue {
   size;
   front;
   backingArr;
 
-  constructor(capacity) {
+  constructor(capacity = INITIAL_CAPACITY) {
     this.front = 0;
     this.size = 0;
     this.backingArr = new Array(capacity);
@@ -27,13 +28,30 @@ class ArrayQueue {
     return this.size;
   }
 
-  dequeue() {}
+  resize() {
+    const newArr = new Array(this.capacity * 2);
+
+    for (let i = 0; i < this.size; i++)
+      newArr[i] = this.backingArr[this.mod(this.front + i)];
+
+    this.backingArr = newArr;
+    this.front = 0;
+  }
+
+  dequeue() {
+    if (this.isEmpty) return null;
+
+    const result = this.backingArr[this.front];
+    this.backingArr[this.front] = null;
+    this.front = this.mod(this.front + 1);
+    this.size--;
+    return result;
+  }
 
   enqueue(val) {
-    // TODO: check that size < capacity
+    if (this.size === this.capacity) this.resize();
 
-    // TODO: add modulo calculations
-    const index = this.mod(this.size + this.front);
+    const index = this.mod(this.front + this.size);
     this.backingArr[index] = val;
 
     this.size++;
@@ -48,9 +66,12 @@ class ArrayQueue {
   }
 }
 
-const INITIAL_CAPACITY = 5;
-const q = new ArrayQueue(INITIAL_CAPACITY);
+const q = new ArrayQueue();
+q.enqueue(0);
 q.enqueue(1);
 q.enqueue(2);
 q.enqueue(3);
 q.print();
+q.dequeue();
+q.print();
+console.log(q.front);
