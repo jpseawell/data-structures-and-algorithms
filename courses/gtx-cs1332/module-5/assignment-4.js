@@ -48,7 +48,9 @@ class BinarySearchTree {
   }
 
   remove(data) {
-    this.root = this.rRemove(this.root, data);
+    const dummy = new TreeNode(null);
+    this.root = this.rRemove(this.root, data, dummy);
+    return dummy.data;
   }
 
   rRemove(curr, data, dummy) {
@@ -61,7 +63,44 @@ class BinarySearchTree {
     } else if (data > curr.data) {
       curr.right = this.rRemove(curr.right, data, dummy);
     } else {
-      // TODO: Data found case
+      // data found
+      dummy.data = curr.data;
+      this.size--;
+
+      if (!curr.left && !curr.right) {
+        return null;
+      } else if (!curr.right) {
+        return curr.left;
+      } else if (!curr.left) {
+        return curr.right;
+      } else {
+        // Two children
+        const temp = new TreeNode(null);
+        curr.right = this.successor(curr.right, temp);
+        curr.data = temp.data;
+      }
+    }
+
+    return curr;
+  }
+
+  predecessor(node, temp) {
+    if (!node.right) {
+      temp.data = node.data;
+      return node.left;
+    } else {
+      node.right = this.predecessor(node.right, temp);
+    }
+
+    return node;
+  }
+
+  successor(curr, dummy) {
+    if (!curr.left) {
+      dummy.data = curr.data;
+      return curr.right;
+    } else {
+      curr.left = this.successor(curr.left, dummy);
     }
 
     return curr;
@@ -110,6 +149,13 @@ class BinarySearchTree {
 
 const bst = new BinarySearchTree();
 bst.add(50);
-bst.add(80);
-bst.add(30);
+bst.add(15);
+bst.add(75);
+bst.add(5);
+bst.add(25);
+bst.add(20);
+bst.add(100);
+
+const removed = bst.remove(15);
+console.log({ removed });
 bst.print();
