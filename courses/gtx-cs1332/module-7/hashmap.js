@@ -11,12 +11,11 @@ class HashNode {
 }
 
 class ExternalChainingHashMap {
-  initialCapacity;
   backingArr;
-  size;
+  size = 0;
+  loadFactor = 0.6;
 
   constructor(_initialCapacity = 13) {
-    this.initialCapacity = _initialCapacity;
     this.backingArr = new Array(_initialCapacity);
   }
 
@@ -24,23 +23,25 @@ class ExternalChainingHashMap {
   put(key, val) {
     const newNode = new HashNode(key, val, null);
     const index = this.#hash(key);
-
     this.size++;
 
-    if (!this.backingArr[index]) {
-      this.backingArr[index] = newNode;
-      return;
-    }
-
-    const existingHead = this.backingArr[index];
-    if (!this.#findAndReplace(key, val, existingHead)) {
-      newNode.next = existingHead;
-      this.backingArr[index] = newNode;
-    }
+    if (this.#full) this.#resize();
+    this.#insert(index, newNode, this.backingArr);
   }
 
   // TODO:
-  get(key) {}
+  get(key) {
+    const index = this.#hash(key);
+    if (!this.backingArr[index]) return null;
+
+    const existingHead = this.backingArr[index];
+    let curr = existingHead;
+    while (curr) {
+      if (curr.key === key) return curr.val;
+
+      curr = curr.next;
+    }
+  }
 
   // TODO:
   remove(val) {}
@@ -54,10 +55,39 @@ class ExternalChainingHashMap {
   }
 
   // Private
+  #insert(index, newNode, arr) {
+    if (!arr[index]) {
+      arr[index] = newNode;
+      return;
+    }
+
+    const existingHead = arr[index];
+    if (!this.#findAndReplace(newNode.key, newNode.val, existingHead)) {
+      newNode.next = existingHead;
+      arr[index] = newNode;
+    }
+  }
+
+  #resize() {
+    console.log("resizing...");
+    const oldArr = this.backingArr;
+
+    this.backingArr = new Array(this.backingArr.length * 2 + 1);
+
+    let curr;
+    for (let el of oldArr) {
+      curr = el;
+      while (curr) {
+        this.#insert(this.#hash(curr.key), curr, this.backingArr);
+        curr = curr.next;
+      }
+    }
+  }
+
   #findAndReplace(key, val, head) {
     let found = false;
     let curr = head;
-    while (curr.next) {
+    while (curr) {
       if (curr.key === key) {
         console.log(`key found! replacing ${curr.val} with ${val}`);
         found = true;
@@ -75,17 +105,17 @@ class ExternalChainingHashMap {
     return Math.abs(key % this.backingArr.length);
   }
 
-  // TODO: Implement resize when full
   get #full() {
-    return this.capacity === this.size;
+    return this.size / this.backingArr.length > this.loadFactor;
   }
 }
 
-const hashMap = new ExternalChainingHashMap();
+const hashMap = new ExternalChainingHashMap(6);
+hashMap.put(32, 32);
 hashMap.put(19, 19);
 hashMap.put(6, 6);
-hashMap.put(32, 32);
 hashMap.put(8, 8);
 hashMap.put(11, 11);
 hashMap.put(25, 25);
 hashMap.print();
+console.log(hashMap.get(6));
