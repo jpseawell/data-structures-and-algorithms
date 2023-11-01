@@ -44,7 +44,27 @@ class ExternalChainingHashMap {
   }
 
   // TODO:
-  remove(val) {}
+  remove(key) {
+    const index = this.#hash(key);
+
+    if (!this.backingArr[index]) throw new Error("Key not found");
+
+    const head = this.backingArr[index];
+    let curr = head;
+    let prev;
+    while (curr) {
+      if (curr.key === key) {
+        if (curr === head) this.backingArr[index] = curr?.next || null;
+        else prev.next = curr.next;
+        break;
+      }
+
+      prev = curr;
+      curr = curr.next;
+    }
+
+    return curr.val;
+  }
 
   print() {
     console.log(this.backingArr);
@@ -110,12 +130,10 @@ class ExternalChainingHashMap {
   }
 }
 
-const hashMap = new ExternalChainingHashMap(6);
-hashMap.put(32, 32);
-hashMap.put(19, 19);
-hashMap.put(6, 6);
-hashMap.put(8, 8);
+const hashMap = new ExternalChainingHashMap();
+hashMap.put(4, 4);
+hashMap.put(37, 37);
+hashMap.put(24, 24);
 hashMap.put(11, 11);
-hashMap.put(25, 25);
+hashMap.remove(11);
 hashMap.print();
-console.log(hashMap.get(6));
