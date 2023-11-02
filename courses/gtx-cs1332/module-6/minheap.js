@@ -138,13 +138,28 @@ class MinHeap {
 }
 
 // Add example
-const heap1 = new MinHeap([null, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
-heap1.add(0);
+const heap1 = new MinHeap([
+  null,
+  10,
+  42,
+  22,
+  45,
+  55,
+  24,
+  88,
+  59,
+  64,
+  89,
+  75,
+  73,
+  null,
+]);
+heap1.add(7);
 console.log("Add:");
 heap1.print();
 
 // Remove example
-const heap2 = new MinHeap([null, 0, 1, 2, 4, 3, 5, 7, 6, 8, 9, 10]);
-heap1.remove();
+const heap2 = new MinHeap([null, 12, 24, 50, 26, 64, 59, 86, 75, 36, 89, 83]);
+heap2.remove();
 console.log("Remove:");
-heap1.print();
+heap2.print();

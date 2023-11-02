@@ -84,15 +84,15 @@ class BinarySearchTree {
     return curr;
   }
 
-  predecessor(node, temp) {
-    if (!node.right) {
-      temp.data = node.data;
-      return node.left;
+  predecessor(curr, dummy) {
+    if (!curr.right) {
+      dummy.data = curr.data;
+      return curr.left;
     } else {
-      node.right = this.predecessor(node.right, temp);
+      curr.right = this.predecessor(curr.right, dummy);
     }
 
-    return node;
+    return curr;
   }
 
   successor(curr, dummy) {
