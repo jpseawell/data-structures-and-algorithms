@@ -11,8 +11,9 @@ A repo for practicing data structures and algorithms. I try to solve all of thes
 - [Longest Increasing Subsequence](./algos/longestIncreasingSubsequence.js)
 - [Patterned Rectangular Tilings](./algos/patternedRectangularTilings.js)
 - [Towers of Hanoi](./algos/towersOfHanoi.js)
-- [Binary Search](./algos/BinarySearch.ts)
+- [Binary Search](./algos/binarySearch.ts)
 - [Two Crystal Balls](./algos/twoCrystalBalls.ts)
+- [Bubble Sort](./algos/bubbleSort.ts)
 
 ## Data Structures
 
