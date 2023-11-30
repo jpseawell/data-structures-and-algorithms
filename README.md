@@ -14,7 +14,9 @@ A repo for practicing data structures and algorithms. I try to solve all of thes
 - [Binary Search](./algos/BinarySearch.ts)
 - [Two Crystal Balls](./algos/twoCrystalBalls.ts)
 - [Bubble Sort](./algos/bubbleSort.ts)
+- [Cyclic Linked List](./algos/hasCycle.js)
 - [Maze Solver (Path Finder)](./algos/mazeSolver.ts)
+- [Quick Sort](./algos/quickSort.ts)
 
 ## Data Structures
 
