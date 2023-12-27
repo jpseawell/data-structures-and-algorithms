@@ -17,6 +17,9 @@ A repo for practicing data structures and algorithms. I try to solve all of thes
 - [Cyclic Linked List](./algos/hasCycle.js)
 - [Maze Solver (Path Finder)](./algos/mazeSolver.ts)
 - [Quick Sort](./algos/quickSort.ts)
+- [Pre Order Traversal](./algos/BTPreOrder.ts)
+- [In Order Traversal](./algos/BTInOrder.ts)
+- [Post Order Traversal](./algos/BTPostOrder.ts)
 
 ## Data Structures
 
