@@ -20,6 +20,7 @@ A repo for practicing data structures and algorithms. I try to solve all of thes
 - [Pre Order Traversal](./algos/BTPreOrder.ts)
 - [In Order Traversal](./algos/BTInOrder.ts)
 - [Post Order Traversal](./algos/BTPostOrder.ts)
+- [Breadth First Search](./algos/bfs.ts)
 
 ## Data Structures
 
