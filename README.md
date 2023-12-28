@@ -21,6 +21,7 @@ A repo for practicing data structures and algorithms. I try to solve all of thes
 - [In Order Traversal](./algos/BTInOrder.ts)
 - [Post Order Traversal](./algos/BTPostOrder.ts)
 - [Breadth First Search](./algos/bfs.ts)
+- [Compare Binary Trees](./algos/compareBT.ts)
 
 ## Data Structures
 
