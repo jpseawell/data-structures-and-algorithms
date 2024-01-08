@@ -23,6 +23,7 @@ A repo for practicing data structures and algorithms. I try to solve all of thes
 - [Breadth First Search](./algos/bfs.ts)
 - [Compare Binary Trees](./algos/compareBT.ts)
 - [BFS on Adj. Matrix](./algos/BFSGraphMatrix.ts)
+- [DFS on Adj. List](./algos/DFSGraphList.ts)
 
 ## Data Structures
 
