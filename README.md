@@ -24,6 +24,7 @@ A repo for practicing data structures and algorithms. I try to solve all of thes
 - [Compare Binary Trees](./algos/compareBT.ts)
 - [BFS on Adj. Matrix](./algos/BFSGraphMatrix.ts)
 - [DFS on Adj. List](./algos/DFSGraphList.ts)
+- [Dijkstra's Shortest Path](./algos/DijkstraList.ts)
 
 ## Data Structures
 
