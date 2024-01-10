@@ -38,3 +38,4 @@ A repo for practicing data structures and algorithms. I try to solve all of thes
 - [MinHeap](./data-structures/MinHeap.js)
 - [Singly Linked List](./data-structures/SinglyLinkedList.js)
 - [Doubly Linked List](./data-structures/DoublyLinkedList.ts)
+- [LRU Cache](./data-structures/LRU.ts)
